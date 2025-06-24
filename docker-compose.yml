@@ -3,15 +3,16 @@
 services:
   mysql:
     image: mysql
+    env_file: ./.env
     environment:
-      - MYSQL_ROOT_PASSWORD=password123
-      - MYSQL_DATABASE=mydb
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=$DB_DATABASE
     ports:
-      - "3307:3306"
+      - "$DB_LOCAL_PORT:$DB_DOCKER_PORT"
   app:
     build: .
     ports:
-      - "3000:3000"
+      - "$APP_LOCAL_PORT:$APP_DOCKER_PORT"
     depends_on:
       - mysql
     links:
