@@ -1,0 +1,11 @@
+
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password123
+      - MYSQL_DATABASE=mydb
+    ports:
+      - "3307:3306"
+     
